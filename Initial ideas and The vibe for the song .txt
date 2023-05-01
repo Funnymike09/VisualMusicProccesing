@@ -1,0 +1,5 @@
+1.1main feel of the project is to have a roadtrip feel with initial visual being radio like which i based from a radio player in my grandpas Car  with bars that raise depending on the sound and have a floating like top that will bump up and down with the sound (https://www.minidisc.wiki/_media/equipment/panasonic/auto/panasonic_cx-mx77d_1.jpg)
+1.2that would be the intro do a car ride that will develop into some shapes that come in the background
+fade in and fade out likefade in and fade out like 
+2.2Add a car that rides on top from left to right to show the progress of the song 
+
