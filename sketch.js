@@ -56,12 +56,12 @@ function draw() {
 	update();
 	spectrum[100]=20
 	noFill();
-	stroke(150,map(spectrum[300],20,0,235,150),map(spectrum[50],2,225,125,150))
+	stroke(200,map(spectrum[100],420,69,2,0),map(spectrum[100],2,225,325,10))
 	spectrum = fft.analyze();
   //draw music line 
-  for (var i = 0; i< spectrum.length/2; i++){
-    let x = map(i, 0, spectrum.length/10, 0, width);
-    let h = -height + map(spectrum[i+20], 0, 500, height, height/5*1);
+  for (var i = 0; i< spectrum.length/5; i++){
+    let x = map(i, 0, spectrum.length/8, 0, width);
+    let h = -height + map(spectrum[i+20], 0, 400, height, height/5*1);
     rect(x, height, width / spectrum.length/2, h );
   }
   noFill();
@@ -117,11 +117,7 @@ function draw() {
 
 function mousePressed() {
   if(first==0||!sound.isLooping()){
-    // mic test
-    //mic = new p5.AudioIn();
-    //mic.start();
     sound.loop();
-    //mic.amp(0.4);
     first=1;
   }
 }
