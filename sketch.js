@@ -1,6 +1,5 @@
 let time = 0;
 let x = 0;
-let COLORS = [ '#69D2E7', '#A7DBD8', '#E0E4CC', '#F38630', '#FA6900', '#FF4E50', '#F9D423', '#4E90B9', '#F38630' ];
 
 let pool = [];
 let spectrum=[];
@@ -9,8 +8,9 @@ let fft;
 let center;
 let first=0;
 let tempy;
-let rot = 3;
-let r;
+let rot = 1;
+let r = 0;
+//attemt at rotation
 function preload(){
 	sound = loadSound('Route Nationale to Paris.mp3');
 }
@@ -84,12 +84,15 @@ function draw() {
 	x=-180
   while (x <= 180) {
     stroke('green');
-    y=70 + 200 * noise (x * 0.01, time)*spectrum[int((x+280)/5)]/300;
+    strokeWeight(2.5);
+    y=70 + 200 * noise (x * 0.01, time)*spectrum[int((x+180)/10)]/300;
 		if(x==-180)
 			tempy=y;
     x = x + 1;
 		
-		vertex(center.x+sin(radians(x))*lerp(y, tempy, x/360),center.y+cos(radians(x))*lerp(y, tempy, x/360))
+		vertex(center.x+sin(radians(x+r))*lerp(y, tempy, x/360),center.y+cos(radians(x))*lerp(y, tempy, x/360));
+    r+rot;
+    
   }
 	endShape();
 	
@@ -97,8 +100,9 @@ function draw() {
 	x=-45
   while (x <= 315) {
     stroke('yellow');
+    strokeWeight(2);
     fill('#57341f');
-    y=5 + 200 * noise (x * 0, time)*spectrum[int((x+75)/5)]/400;
+    y=5 + 200 * noise (x * 0.09, time)*spectrum[int((x+75)/5)]/400;
 		if(x==-45)
 			tempy=y;
     x = x + 1;
@@ -112,7 +116,7 @@ function draw() {
 		fill(255,255,255)
 		stroke(255,255,255)
     textSize(32);
-    text("click to start",40,40);
+    text("click to begin",40,40);
   }
 }
 
