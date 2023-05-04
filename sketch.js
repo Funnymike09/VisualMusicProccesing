@@ -9,12 +9,8 @@ let fft;
 let center;
 let first=0;
 let tempy;
-let angle = 0;
-let radius = 0;
-let speed = 0.02;
-let centerY = windowWidth/2;
-let centerX = windowHeight/2;
-
+let rot = 3;
+let r;
 function preload(){
 	sound = loadSound('Route Nationale to Paris.mp3');
 }
@@ -75,8 +71,8 @@ function draw() {
   x = 0;
 	beginShape();
   while (x <= 360) {
-    stroke( 'black');
-    y=100 + 200 * noise (x * 0.01, time)*spectrum[int(x/5)]/180;
+    stroke( 'purple');
+    y=150 + 200 * noise (x * 0.08, time)*spectrum[int(x/5)]/180;
 		if(x==0)
 			tempy=y;
     x = x + 1;
@@ -87,8 +83,8 @@ function draw() {
 	beginShape();
 	x=-180
   while (x <= 180) {
-    stroke('gray');
-    y=50 + 200 * noise (x * 0.01, time)*spectrum[int((x+180)/5)]/300;
+    stroke('green');
+    y=70 + 200 * noise (x * 0.01, time)*spectrum[int((x+280)/5)]/300;
 		if(x==-180)
 			tempy=y;
     x = x + 1;
@@ -100,8 +96,9 @@ function draw() {
 	beginShape();
 	x=-45
   while (x <= 315) {
-    stroke('green');
-    y=1 + 200 * noise (x * 0.01, time)*spectrum[int((x+45)/5)]/400;
+    stroke('yellow');
+    fill('#57341f');
+    y=5 + 200 * noise (x * 0, time)*spectrum[int((x+75)/5)]/400;
 		if(x==-45)
 			tempy=y;
     x = x + 1;
@@ -131,16 +128,3 @@ function mousePressed() {
 function update() {
     
     }
-function moved() {
-    for ( i = 0; i < max; i++ ) {
-      spawn(map(spectrum[40],0,0,0,0),map(spectrum[10],0,0,0,0));
-    }
-}
-
-function mouseMoved() {
-   moved();
-}
-
-function touchMoved() {
-    moved();
-}
