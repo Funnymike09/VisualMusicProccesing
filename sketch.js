@@ -5,11 +5,12 @@ let pool = [];
 let spectrum=[];
 let sound;
 let fft;
-let center;
+let centra;
 let first=0;
 let tempy;
 let rot = 1;
 let r = 0;
+let angle = 0;
 //attemt at rotation
 function preload(){
 	sound = loadSound('Route Nationale to Paris.mp3');
@@ -17,7 +18,7 @@ function preload(){
 
 function setup() {
 	noStroke();
-	
+
 	fft = new p5.FFT();
   amplitude = new p5.Amplitude();
   fft.setInput(sound);
@@ -30,7 +31,7 @@ function setup() {
     r=windowWidth/8*3;
   }
   createCanvas(windowWidth, windowHeight); 
-  center=createVector(windowWidth/2, windowHeight/2)
+  centra=createVector(windowWidth/2, windowHeight/2)
 	
 }
 
@@ -65,6 +66,7 @@ function draw() {
     let h = -height + map(spectrum[i+10], 0, 400, height, height/5*1);
     rect(x, height, width / spectrum.length/2, h );
   }
+  
   noFill();
   noStroke();
   //first circle
@@ -76,12 +78,14 @@ function draw() {
 		if(x==0)
 			tempy=y;
     x = x + 1;
-		vertex(center.x+sin(radians(x))*lerp(y, tempy, x/360),center.y+cos(radians(x))*lerp(y, tempy, x/360));
+		vertex(centra.x+sin(radians(x))*lerp(y, tempy, x/360),centra.y+cos(radians(x))*lerp(y, tempy, x/360));
   }
 	endShape();
-	
+	push();
 	beginShape();
 	x=-180
+ //translate(windowHeight/2,windowWidth/2);
+ // rotate(angle);
   while (x <= 180) {
     stroke('green');
     strokeWeight(2.5);
@@ -90,12 +94,11 @@ function draw() {
 			tempy=y;
     x = x + 1;
 		
-		vertex(center.x+sin(radians(x+r))*lerp(y, tempy, x/360),center.y+cos(radians(x))*lerp(y, tempy, x/360));
-    r+rot;
+		vertex(centra.x+sin(radians(x+r))*lerp(y, tempy, x/360),centra.y+cos(radians(x))*lerp(y, tempy, x/360));
     
   }
 	endShape();
-	
+	pop();
 	beginShape();
 	x=-45
   while (x <= 315) {
@@ -107,7 +110,7 @@ function draw() {
 			tempy=y;
     x = x + 1;
 		
-		vertex(center.x+sin(radians(x))*lerp(y, tempy, x/360),center.y+cos(radians(x))*lerp(y, tempy, x/360))
+		vertex(centra.x+sin(radians(x))*lerp(y, tempy, x/360),centra.y+cos(radians(x))*lerp(y, tempy, x/360))
   }
 	endShape();
   
@@ -118,6 +121,7 @@ function draw() {
     textSize(32);
     text("click to begin",40,40);
   }
+  angle= angle +1;
 }
 
 function mousePressed() {
